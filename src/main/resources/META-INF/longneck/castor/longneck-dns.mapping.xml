@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<c:mapping xmlns:c="http://castor.exolab.org/"
+           xmlns:l="urn:hu.sztaki.ilab.longneck:1.0">
+
+  <c:class name="hu.sztaki.ilab.longneck.dns.ReverseDns" 
+           extends="hu.sztaki.ilab.longneck.process.AbstractSourceInfoContainer">
+
+    <c:map-to xml="dnsresolve" ns-uri="urn:hu.sztaki.ilab.longneck:1.0"/>
+
+  </c:class>
+
+</c:mapping>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <bean id="dnsHook" class="hu.sztaki.ilab.longneck.dns.DnsHook"/>
+
+    <bean id="lookupServiceFactory" class="hu.sztaki.ilab.longneck.dns.LookupServiceFactory">
+      <property name="runtimeProperties" ref="runtime-properties"/>
+    </bean>
+
+    <bean id="dnsCache" class="hu.sztaki.ilab.longneck.dns.db.DnsCache" scope="singleton" lazy-init="true">
+      <constructor-arg index="0" ref="database-connection-manager"/>
+      <constructor-arg index="1" value="dnsCache"/>
+    </bean>
+
+    <bean class="hu.sztaki.ilab.longneck.dns.ReverseDns" lazy-init="true">
+      <property name="lookupServiceFactory" ref="lookupServiceFactory"/>
+      <property name="dnsCache" ref="dnsCache"/>
+    </bean>
+</beans>

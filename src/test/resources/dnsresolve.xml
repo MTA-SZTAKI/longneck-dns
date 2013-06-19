@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<process xmlns="urn:hu.sztaki.ilab.longneck:1.0">
+
+  <blocks>
+    
+    <!-- github.com -->
+    <set apply-to="host" value="204.232.175.90" />
+    <dnsresolve apply-to="host" domain-field-name="resolvedHostDomain" exp-field-name="resolvedHostLookupExpDate"/>
+
+  </blocks>
+
+</process>
