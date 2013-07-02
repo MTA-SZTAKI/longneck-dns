@@ -2,6 +2,7 @@ package hu.sztaki.ilab.longneck.dns;
 
 import hu.sztaki.ilab.longneck.Record;
 import hu.sztaki.ilab.longneck.dns.db.DnsCache;
+import hu.sztaki.ilab.longneck.dns.db.LookupResult;
 import hu.sztaki.ilab.longneck.dns.db.ReverseData;
 import hu.sztaki.ilab.longneck.process.AbstractSourceInfoContainer;
 import hu.sztaki.ilab.longneck.process.CheckError;
@@ -82,16 +83,14 @@ public class ReverseDns extends AbstractSourceInfoContainer implements Block {
                 }
             }
 
-            if (reverseData != null) {
+            if (reverseData != null && LookupResult.OK.equals(reverseData.getResult())) {
                 BlockUtils.setValue(HOSTNAMEFIELD, reverseData.getDomain(), record, variables);
                 BlockUtils.setValue(EXPIRYFIELD,
                     dateFormat.format(new Date(reverseData.getExpirationDate())),
                     record, variables);
-            } else {
-                // it is considered to be normal, if reverse lookup fails (no hostname)
-                //throw new CheckError(new CheckResult(this, false, ipAddress, ipAddr,
-                //        "Reverse dns resolving failed."));
             }
+            
+            // it is considered to be normal, if reverse lookup fails (no hostname)            
         } catch (RuntimeException ex) {
             LOG.error("Critical dns lookup error.", ex);
         }

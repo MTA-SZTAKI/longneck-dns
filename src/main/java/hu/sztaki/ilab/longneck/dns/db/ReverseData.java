@@ -16,7 +16,8 @@ public class ReverseData {
     /** The ip address that was resolved. */
     @PrimaryKey
     private String ipAddress;
-
+    /** The result of the query. */
+    private LookupResult result;
     /** The domain name resolved. */
     private String domain;
     /** The expiration date of the resolved record. */
@@ -24,8 +25,9 @@ public class ReverseData {
 
     public ReverseData() {}
 
-    public ReverseData(String ipAddress, String domain, long expirationDate) {
+    public ReverseData(String ipAddress, LookupResult result, String domain, long expirationDate) {
         this.ipAddress = ipAddress;
+        this.result = result;
         this.domain = domain;
         this.expirationDate = expirationDate;
     }
@@ -36,6 +38,14 @@ public class ReverseData {
 
     public void setIpAddress(String ipAddress) {
         this.ipAddress = ipAddress;
+    }
+
+    public LookupResult getResult() {
+        return result;
+    }
+
+    public void setResult(LookupResult result) {
+        this.result = result;
     }
 
     public String getDomain() {

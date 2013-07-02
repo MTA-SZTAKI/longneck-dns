@@ -6,5 +6,10 @@
     <title>longneck-dns changelog</title>
   </properties>
   <body>
+    <release version="1.4.4" date="2013-07-02" description="Bugfixes.">
+      <action dev="molnarp" type="add">
+        Added a result field to the dns lookup result class to also cache failed lookup attempts.
+      </action>
+    </release>
   </body>
 </document>

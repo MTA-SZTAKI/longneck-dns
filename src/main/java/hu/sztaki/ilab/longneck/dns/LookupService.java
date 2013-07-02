@@ -1,5 +1,6 @@
 package hu.sztaki.ilab.longneck.dns;
 
+import hu.sztaki.ilab.longneck.dns.db.LookupResult;
 import hu.sztaki.ilab.longneck.dns.db.ReverseData;
 import java.io.IOException;
 import java.net.SocketTimeoutException;
@@ -64,12 +65,13 @@ public class LookupService implements InitializingBean {
 
             // Prepare reverse data
             ReverseData reverseData = new ReverseData();
+            reverseData.setResult(LookupResult.OK);
             reverseData.setIpAddress(ipAddr);
             reverseData.setExpirationDate(Calendar.getInstance().getTimeInMillis() + 
                     reverseValidityDays * 24 * 60 * 60);
 
             // Parse and return answer
-            if (answers.length != 0) {
+            if (answers.length > 0) {
                 for (Record answer : answers) {
                     if (answer.getType() == Type.PTR && 
                             !answer.rdataToString().matches("^.*\\.in-addr\\.arpa\\.$")) {
@@ -79,6 +81,11 @@ public class LookupService implements InitializingBean {
                         return reverseData;
                     }
                 }
+            } else {
+                reverseData.setDomain("-");
+                reverseData.setResult(LookupResult.FAIL);
+                
+                return reverseData;
             }
         } catch (UnknownHostException e) {
             LOG.warn("Reverse lookup failed, unknown host: " + ipAddr, e);
