@@ -92,7 +92,7 @@ public class ReverseDns extends AbstractSourceInfoContainer implements Block {
             
             // it is considered to be normal, if reverse lookup fails (no hostname)            
         } catch (RuntimeException ex) {
-            LOG.error("Critical dns lookup error.", ex);
+            LOG.error("DNS lookup failed.", ex);
         }
     }
 
