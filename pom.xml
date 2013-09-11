@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>hu.sztaki.ilab.longneck</groupId>
   <artifactId>longneck-dns</artifactId>
-  <version>1.4.4-SNAPSHOT</version>
+  <version>1.4.4</version>
   <packaging>jar</packaging>
 
   <name>longneck-dns</name>
@@ -45,20 +45,19 @@
     <license>
       <name>Apache License, Version 2.0</name>
       <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-      <distribution>git://github.com/MTA-SZTAKI/longneck-parent.git</distribution>
+      <distribution>repo</distribution>
     </license>
   </licenses>
 
   <scm>
     <connection>scm:git:git@github.com:MTA-SZTAKI/longneck-dns.git</connection>
-    <url>https://github.com/MTA-SZTAKI/longneck-dns.git</url>
-    <developerConnection>scm:git:git@github.com:MTA-SZTAKI/longneck-dns.git</developerConnection>
+    <url>https://github.com/MTA-SZTAKI/longneck-dns</url>
   </scm>
 
   <distributionManagement>
     <repository>
       <id>longneck</id>
-      <url>dav:https://longneck.sztaki.hu/maven</url>
+      <url>http://longneck.sztaki.hu/maven/</url>
     </repository>
   </distributionManagement>
 
@@ -180,6 +179,13 @@
         </configuration>
       </plugin>
     </plugins>
+    <extensions>
+      <extension>
+        <groupId>org.apache.maven.wagon</groupId>
+        <artifactId>wagon-webdav-jackrabbit</artifactId>
+        <version>2.4</version>
+      </extension>
+    </extensions>     
   </build>
 
 </project>
