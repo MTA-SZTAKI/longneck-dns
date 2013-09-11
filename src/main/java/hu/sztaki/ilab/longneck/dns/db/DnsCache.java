@@ -5,7 +5,7 @@ import com.sleepycat.je.Environment;
 import com.sleepycat.je.Transaction;
 import com.sleepycat.persist.EntityCursor;
 import com.sleepycat.persist.StoreConfig;
-import hu.sztaki.ilab.longneck.util.database.BerkeleyDBConfiguration;
+import hu.sztaki.ilab.longneck.util.database.BDBConfiguration;
 import hu.sztaki.ilab.longneck.util.database.Configuration;
 import hu.sztaki.ilab.longneck.util.database.DatabaseConfigurationException;
 import hu.sztaki.ilab.longneck.util.database.DatabaseConnectionManager;
@@ -37,12 +37,12 @@ public class DnsCache implements DisposableBean {
     public DnsCache(DatabaseConnectionManager databaseConnectionManager, String connectionName) {
         // Get configuration and check correct type
         Configuration dbConf = databaseConnectionManager.getConfiguration(connectionName);
-        if (! (dbConf instanceof BerkeleyDBConfiguration)) {
+        if (! (dbConf instanceof BDBConfiguration)) {
             throw new DatabaseConfigurationException(
                     String.format("Connection %1$s should be instance of %2$s.",
-                    connectionName, BerkeleyDBConfiguration.class.getName()));
+                    connectionName, BDBConfiguration.class.getName()));
         }
-        BerkeleyDBConfiguration bdbConf = (BerkeleyDBConfiguration) dbConf;
+        BDBConfiguration bdbConf = (BDBConfiguration) dbConf;
 
         // Get database environment
         environment = bdbConf.getEnvironment();

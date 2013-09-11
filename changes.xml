@@ -6,6 +6,11 @@
     <title>longneck-dns changelog</title>
   </properties>
   <body>
+    <release version="1.4.5" date="2013-09-11" description="BDB package fix.">
+      <action dev="molnarp" type="fix">
+        Fixed references to old BDB packages.
+      </action>
+    </release>
     <release version="1.4.4" date="2013-09-11" description="Initial GitHub release.">
       <action dev="molnarp" type="add">
         Added a result field to the dns lookup result class to also cache failed lookup attempts.
